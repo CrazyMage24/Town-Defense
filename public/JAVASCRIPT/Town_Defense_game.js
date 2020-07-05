@@ -1,6 +1,9 @@
 var canvas;
 let widgets =  [];
 
+var selected;
+var highlight;
+
 function setup() 
 {
   canvas = createCanvas(1600,800);
@@ -8,8 +11,8 @@ function setup()
   widgets.push(new Button(200,200,100,50,"szo"));
   widgets.push(new Button(300,300,200,100,"VALAMI"));
   
-  var selected = null;
-  var highlight = null;
+  selected = null;
+  highlight = null;
 }
 
 
@@ -19,6 +22,10 @@ function draw()
   for(i = 0; i < widgets.length; i++)
   {
 	  widgets[i].show();
+  }
+  if(selected != null)
+  {
+	  
   }
 }
 
@@ -38,5 +45,26 @@ function mouseMoved()
 			widgets[i].highlight = false;
 		}
 		
+	}
+}
+
+function mousePressed()
+{
+	selected = null;
+	if(mouseButton == LEFT)
+	{
+		for(i = 0; i < widgets.length; i++)
+		{
+			if(widgets[i].is_selected(mouseX,mouseY))
+			{
+				selected = widgets[i];
+				widgets[i].selected = true;
+			}
+			else
+			{
+				widgets[i].selected = false;
+			}
+			
+		}
 	}
 }
