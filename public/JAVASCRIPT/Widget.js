@@ -6,15 +6,21 @@ class Widget
 		this.y=y;
 		this.w=w;
 		this.h=h;
+		this.selected = false; // rákattintva
+		this.highlight = false; // fölötte az egér
 	}
+	
+	// örökölt functionok
+	
+	is_selected(mouseX,mouseY)
+	{
+		return this.x <= mouseX && this.x + this.w >= mouseX 
+			&& this.y <= mouseY && this.y + this.h >= mouseY;
+	}
+	
+	//override functionok
 	
 	show()
-	{
-		fill(255);
-		rect(this.x,this.y,this.w,this.h);
-	}
-	
-	move()
 	{
 		
 	}
