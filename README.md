@@ -10,4 +10,3 @@ Brancheket még nem döntöttem el hogy lesznek-e, majd meglátjuk.
               \ /
 
 2020.07.05 -- Gabó --> Repo megcsinálva, alaphelyzet létrehozva.
-2020.07.05 -- Gabó --> Debugging
