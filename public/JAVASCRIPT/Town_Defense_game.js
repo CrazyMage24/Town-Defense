@@ -10,6 +10,7 @@ function setup()
   canvas.id("vaszon");
   widgets.push(new Button(200,200,100,50,"szo"));
   widgets.push(new Button(300,300,200,100,"VALAMI"));
+  widgets.push(new StaticText(500,500,200,200,"Domi szovege",50));
   
   selected = null;
   highlight = null;
