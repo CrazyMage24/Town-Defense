@@ -8,8 +8,11 @@ function setup()
 {
   canvas = createCanvas(1600,800);
   canvas.id("vaszon");
+  
   widgets.push(new Button(200,200,100,50,"szo"));
-  widgets.push(new Button(300,300,200,100,"VALAMI"));
+  widgets.push(new Button(300,300,500,200,"VALAMI"));
+  let lista = ["alma","korte","macska"];
+  widgets.push(new List(800,400,200,100,lista));
   
   selected = null;
   highlight = null;
