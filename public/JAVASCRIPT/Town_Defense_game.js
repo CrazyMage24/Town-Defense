@@ -3,6 +3,10 @@ let widgets =  [];
 
 var selected;
 var highlight;
+var game;
+var falunev;
+
+var socket;
 
 var WIDTH = 1600;
 var HEIGHT = 800;
@@ -14,23 +18,30 @@ function setup()
   
   selected = null;
   highlight = null;
+  game = null;
+  falunev = null;
   
   fomenu();
+  
+  // server shit
+  socket = io.connect("127.0.0.1:3000/");
 }
 
 
 function draw() 
 {
 	hatter();
-	for(i = 0; i < widgets.length; i++)
+	if(game != null)
 	{
-		widgets[i].show();
+		game.run();
 	}
-	if(selected != null)
+	else
 	{
-		
+		for(i = 0; i < widgets.length; i++)
+		{
+			widgets[i].show();
+		}
 	}
-  
 }
 
 function mouseMoved()
@@ -97,15 +108,21 @@ function town_name_selector()
 	console.log("town name selector");
 	widgets.push(new Button(675,550,250,100,"Vissza"));
 	widgets.push(new StaticText(450,50,50,50,"Város neve:",40));
-	widgets.push(new WritingText(550,50,100,100));
+	falunev = new WritingText(550,50,100,100);
+	widgets.push(falunev);
 	widgets.push(new Button(700,50,150,100,"Jatek inditasa"));
 	
 }
 
-function town_defense_game(falunev)
+function town_defense_game()
 {
 	widgets = [];
-	widgets.push(new StaticText(1450,0,150,100,falunev,35));
+	game = new Town(falunev.szo);
+	
+	console.log(falunev.szo);
+	
+	//
+	socket.emit('newGame', falunev.szo);
 }
 
 function keyTyped() 
@@ -123,19 +140,3 @@ function keyPressed()
 		selected.alterText(keyCode)
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
