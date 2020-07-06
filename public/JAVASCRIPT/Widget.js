@@ -24,4 +24,9 @@ class Widget
 	{
 		
 	}
+	
+	task()
+	{
+		
+	}
 }

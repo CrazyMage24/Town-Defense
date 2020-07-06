@@ -9,6 +9,8 @@ class Button extends Widget
 	
 	show()
 	{	
+		textFont(this.font,45);
+		var tw = textWidth(this.szo);
 		if(this.selected)
 		{
 			fill(255);
@@ -16,8 +18,6 @@ class Button extends Widget
 			fill(255);
 			rect(this.x,this.y,this.w,this.h);
 			fill(0);
-			textFont(this.font,45);
-			var tw = textWidth(this.szo);
 			text(this.szo, this.x+this.w/2 - tw/2, this.y+this.h/1.5);
 		}
 		else
@@ -29,8 +29,6 @@ class Button extends Widget
 				fill(255);
 				rect(this.x,this.y,this.w,this.h);
 				fill(0);
-				textFont(this.font,44);
-				var tw = textWidth(this.szo);
 				text(this.szo, this.x+this.w/2 - tw/2, this.y+this.h/1.5);
 			}
 			else
@@ -40,11 +38,22 @@ class Button extends Widget
 				fill(51);
 				rect(this.x,this.y,this.w,this.h);
 				fill(255);
-				textFont(this.font,44);
-				var tw = textWidth(this.szo);
 				text(this.szo, this.x+this.w/2 - tw/2, this.y+this.h/1.5);
 			}
 		}
 		
+	}
+	
+	task()
+	{
+		switch(this.szo)
+		{
+			case "1 jatekos": town_name_selector();
+				break;
+			case "Vissza": fomenu();
+				break;
+			
+			default: console.log(this.szo);
+		}
 	}
 }

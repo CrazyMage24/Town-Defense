@@ -10,7 +10,12 @@ Brancheket még nem döntöttem el hogy lesznek-e, majd meglátjuk.
               \ /
 
 2020.07.05 -- Gabó --> Repo megcsinálva, alaphelyzet létrehozva.
+2020.07.06 -- GAbó --> Főmenü elkezdve
 
 
-Domi proba xdddd
-Ki a kiralym, hat en
+
+Bugok:
+	- Gombok szélét nem érzékeli
+	- Csak szerveren működik a FONT --# FIXED , a CSS Borderja miatt volt szar
+	
+	
