@@ -29,4 +29,13 @@ class Widget
 	{
 		
 	}
+	
+	write(betu)
+	{
+		
+	}
+	alterText(keyCode)
+	{
+		
+	}
 }

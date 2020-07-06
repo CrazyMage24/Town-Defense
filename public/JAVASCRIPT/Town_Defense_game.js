@@ -96,6 +96,46 @@ function town_name_selector()
 	widgets = [];
 	console.log("town name selector");
 	widgets.push(new Button(675,550,250,100,"Vissza"));
+	widgets.push(new StaticText(450,50,50,50,"Város neve:",40));
+	widgets.push(new WritingText(550,50,100,100));
+	widgets.push(new Button(700,50,150,100,"Jatek inditasa"));
+	
 }
+
+function town_defense_game(falunev)
+{
+	widgets = [];
+	widgets.push(new StaticText(1450,0,150,100,falunev,35));
+}
+
+function keyTyped() 
+{
+	if(selected != null)
+	{
+		selected.write(key);
+	}
+}
+
+function keyPressed()
+{
+	if(selected != null)
+	{
+		selected.alterText(keyCode)
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

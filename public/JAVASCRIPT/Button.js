@@ -52,6 +52,8 @@ class Button extends Widget
 				break;
 			case "Vissza": fomenu();
 				break;
+			case "Jatek inditasa": town_defense_game("MORDOR");
+				break;
 			
 			default: console.log(this.szo);
 		}
