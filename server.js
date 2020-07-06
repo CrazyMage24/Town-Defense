@@ -26,21 +26,25 @@ function newConnection(socket)
 	{
 		let savedata = 
 		{
-			name : data,
-			population: 5,
-			day : 1
+			name: data.name,
+			population: data.population,
+			max_population: data.max_population,
+			soldiers: data.soldiers,
+			farmers: data.farmers,
+			workers: data.workers,
+			
+			food: data.food,
+			resource: data.resource,
+			happiness: data.happiness,
+			day: data.day
 		}
 		
-		var file = savedata.name + ".txt";
+		var file = "users/" + savedata.name + ".txt";
 		fs.writeFile(file, JSON.stringify(savedata), (err) => 
 		{
 			if (err) throw err;
-			console.log("Game Saved!");
+			console.log(savedata.name + " town started and saved");
 		});
 		
 	}
 }
-
-io.sockets.on('disconnect', () => {
-    console.log(socket.id + 'disconnected');
-  });

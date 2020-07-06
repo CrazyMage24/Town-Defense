@@ -1,0 +1,1 @@
+{"name":"city","population":5,"max_population":10,"soldiers":0,"farmers":5,"workers":0,"food":50,"resource":40,"happiness":80,"day":1}

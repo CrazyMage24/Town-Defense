@@ -1,8 +1,8 @@
 class List extends Widget 
 {
-	constructor(x,y,w,h,lista)
+	constructor(x,y,w,h,szo,lista)
 	{
-		super(x,y,w,h);
+		super(x,y,w,h,szo);
 		this.lista=lista;
 		this.selected_item = lista[0];
 		this.selected_index = 0;

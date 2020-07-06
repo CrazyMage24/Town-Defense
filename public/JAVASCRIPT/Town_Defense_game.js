@@ -4,7 +4,7 @@ let widgets =  [];
 var selected;
 var highlight;
 var game;
-var falunev;
+var falu;
 
 var socket;
 
@@ -19,7 +19,7 @@ function setup()
   selected = null;
   highlight = null;
   game = null;
-  falunev = null;
+  falu = null;
   
   fomenu();
   
@@ -107,22 +107,38 @@ function town_name_selector()
 	widgets = [];
 	console.log("town name selector");
 	widgets.push(new Button(675,550,250,100,"Vissza"));
-	widgets.push(new StaticText(450,50,50,50,"Város neve:",40));
-	falunev = new WritingText(550,50,100,100);
-	widgets.push(falunev);
-	widgets.push(new Button(700,50,150,100,"Jatek inditasa"));
+	widgets.push(new StaticText(650,100,50,50,"Város neve:",40));
+	falu = new WritingText(850,100,250,50);
+	widgets.push(falu);
+	widgets.push(new Button(650,300,300,100,"Jatek inditasa"));
 	
 }
 
 function town_defense_game()
 {
-	widgets = [];
-	game = new Town(falunev.szo);
-	
-	console.log(falunev.szo);
-	
-	//
-	socket.emit('newGame', falunev.szo);
+	if(falu.szo.length > 0)
+	{
+		widgets = [];
+		game = new Town(falu.szo);
+		
+		var data = 
+		{
+			name: game.name,
+			population: game.population,
+			max_population: game.max_population,
+			soldiers: game.soldiers,
+			farmers: game.farmers,
+			workers: game.workers,
+			
+			food: game.food,
+			resource: game.resource,
+			happiness: game.happiness,
+			day: game.day
+		}
+		
+		// server shit
+		socket.emit('newGame', data);
+	}
 }
 
 function keyTyped() 

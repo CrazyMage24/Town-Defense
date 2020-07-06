@@ -1,11 +1,12 @@
 class Widget 
 {
-	constructor(x,y,w,h)
+	constructor(x,y,w,h,szo)
 	{
 		this.x=x;
 		this.y=y;
 		this.w=w;
 		this.h=h;
+		this.szo = szo;
 		this.selected = false; // rákattintva
 		this.highlight = false; // fölötte az egér
 	}
@@ -34,6 +35,7 @@ class Widget
 	{
 		
 	}
+	
 	alterText(keyCode)
 	{
 		
