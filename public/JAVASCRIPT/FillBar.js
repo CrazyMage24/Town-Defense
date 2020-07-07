@@ -7,12 +7,13 @@ class FillBar extends Widget
 		this.value=value;
 		this.maxValue=maxValue;
 		this.font = loadFont("FONTS/FFF_Tusj.ttf");
-		textFont(this.font,45);
+		
 	}
 	
 	show()
 	{	
 		fill(255);
+		textFont(this.font,25);
 		text(this.szo, this.x,this.y-10);
 		rect(this.x-2,this.y-2,this.w+4,this.h+4);
 		fill(51);

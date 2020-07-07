@@ -15,6 +15,7 @@ function setup()
 {
   canvas = createCanvas(WIDTH,HEIGHT);
   canvas.id("vaszon");
+  canvas.addClass("loader");
   
   selected = null;
   highlight = null;
@@ -46,19 +47,26 @@ function draw()
 
 function mouseMoved()
 {
-	highlight = null;
-	for(i = 0; i < widgets.length; i++)
+	if(game !=null)
 	{
-		if(widgets[i].is_selected(mouseX,mouseY))
+		game.mouseMoved(mouseX,mouseY);
+	}
+	else
+	{
+		highlight = null;
+		for(i = 0; i < widgets.length; i++)
 		{
-			highlight = widgets[i];
-			widgets[i].highlight = true;
+			if(widgets[i].is_selected(mouseX,mouseY))
+			{
+				highlight = widgets[i];
+				widgets[i].highlight = true;
+			}
+			else
+			{
+				widgets[i].highlight = false;
+			}
+			
 		}
-		else
-		{
-			widgets[i].highlight = false;
-		}
-		
 	}
 }
 
@@ -66,20 +74,28 @@ function mousePressed()
 {
 	if(mouseButton == LEFT)
 	{
-		selected = null;
-		for(i = 0; i < widgets.length; i++)
+		if(game !=null)
 		{
-			if(widgets[i].is_selected(mouseX,mouseY))
+			game.mousePressed(mouseX,mouseY);
+		}
+		else
+		{
+			selected = null;
+			for(i = 0; i < widgets.length; i++)
 			{
-				selected = widgets[i];
-				widgets[i].selected = true;
-				selected.task();
+				if(widgets[i].is_selected(mouseX,mouseY))
+				{
+					selected = widgets[i];
+					widgets[i].selected = true;
+					loadingScreen();
+					selected.task();
+				}
+				else
+				{
+					widgets[i].selected = false;
+				}
+				
 			}
-			else
-			{
-				widgets[i].selected = false;
-			}
-			
 		}
 	}
 }
@@ -125,12 +141,19 @@ function town_defense_game()
 			population: game.population,
 			max_population: game.max_population,
 			soldiers: game.soldiers,
+			max_soldiers: game.max_soldiers,
 			farmers: game.farmers,
+			max_farmers: game.max_farmers,
 			workers: game.workers,
+			max_workers: game.max_workers,
+			freeman: game.freeman,
 			
 			food: game.food,
+			max_food: game.max_food,
 			resource: game.resource,
+			max_resource: game.max_resource,
 			happiness: game.happiness,
+			max_happiness: game.max_happiness,
 			day: game.day
 		}
 		

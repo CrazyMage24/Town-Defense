@@ -30,12 +30,19 @@ function newConnection(socket)
 			population: data.population,
 			max_population: data.max_population,
 			soldiers: data.soldiers,
+			max_soldiers: data.max_soldiers,
 			farmers: data.farmers,
+			max_farmers: data.max_farmers,
 			workers: data.workers,
+			max_workers: data.max_workers,
+			freeman: data.freeman,
 			
 			food: data.food,
+			max_food: data.max_food,
 			resource: data.resource,
+			max_resource: data.max_resource,
 			happiness: data.happiness,
+			max_happiness: data.max_happiness,
 			day: data.day
 		}
 		
