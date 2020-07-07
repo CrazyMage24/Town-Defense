@@ -28,7 +28,17 @@ class Town
 		this.widgets.push(new StaticText(100,400,200,50,"Resource: " + this.resource,40));
 		this.widgets.push(new StaticText(100,450,200,50,"Happiness: " + this.happiness,40));
 		this.widgets.push(new StaticText(100,500,200,50,"Day count: " + this.day,40));
+		
+		this.population_list = [];
+		for(i = 0; i < this.population; i++)
+		{
+			var person = new Person("Person" + (i+1), "farmer",80);
+			this.population_list.push(person);
+		}
+		this.widgets.push(new List(700,100,300,400,"",this.population_list));
 		this.font = loadFont("FONTS/FFF_Tusj.ttf");
+		
+		this.widgets.push(new FillBar(1200,100,250,20,"Population: " + this.population + "/" + this.max_population,this.population,this.max_population));
 	}
 	
 	run()

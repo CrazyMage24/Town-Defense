@@ -97,7 +97,6 @@ function hatter()
 function fomenu()
 {
 	widgets = [];
-	console.log("fomenu");
 	widgets.push(new StaticText(700,50,200,50,"Town Defense",50));
 	widgets.push(new Button(675,150,250,100,"1 jatekos"));
 }
@@ -105,7 +104,6 @@ function fomenu()
 function town_name_selector()
 {
 	widgets = [];
-	console.log("town name selector");
 	widgets.push(new Button(675,550,250,100,"Vissza"));
 	widgets.push(new StaticText(650,100,50,50,"Város neve:",40));
 	falu = new WritingText(850,100,250,50);
