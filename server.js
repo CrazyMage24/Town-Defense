@@ -2,18 +2,15 @@ var express = require("express");
 var fs = require("fs");
 var socket = require("socket.io");
 
-
 var app = express();
 var server = app.listen(3000);
 
 app.use(express.static("public"));
 
-console.log("Running!");
+console.log("Running at 127.0.0.1:3000 !");
 
 var io = socket(server);
 
-
-//
 io.sockets.on("connection", newConnection);
 
 function newConnection(socket)
@@ -53,5 +50,17 @@ function newConnection(socket)
 			console.log(savedata.name + " town started and saved");
 		});
 		
+	}
+	
+	socket.on("newDay", newDay);
+	
+	function newDay(data)
+	{
+		var file = "users/" + data.name + ".txt";
+		fs.writeFile(file, JSON.stringify(data), (err) => 
+		{
+			if (err) throw err;
+			console.log(data.name + " town saved at Day " + data.day);
+		});
 	}
 }

@@ -87,7 +87,6 @@ function mousePressed()
 				{
 					selected = widgets[i];
 					widgets[i].selected = true;
-					loadingScreen();
 					selected.task();
 				}
 				else
@@ -115,6 +114,7 @@ function fomenu()
 	widgets = [];
 	widgets.push(new StaticText(700,50,200,50,"Town Defense",50));
 	widgets.push(new Button(675,150,250,100,"1 jatekos"));
+	loadingScreen();
 }
 
 function town_name_selector()
@@ -125,7 +125,7 @@ function town_name_selector()
 	falu = new WritingText(850,100,250,50);
 	widgets.push(falu);
 	widgets.push(new Button(650,300,300,100,"Jatek inditasa"));
-	
+	loadingScreen();
 }
 
 function town_defense_game()
@@ -160,11 +160,16 @@ function town_defense_game()
 		// server shit
 		socket.emit('newGame', data);
 	}
+	loadingScreen();
 }
 
 function keyTyped() 
 {
-	if(selected != null)
+	if(game !=null)
+	{
+		game.keyTyped(key);
+	}
+	else if(selected != null)
 	{
 		selected.write(key);
 	}
@@ -172,7 +177,11 @@ function keyTyped()
 
 function keyPressed()
 {
-	if(selected != null)
+	if(game !=null)
+	{
+		game.keyPressed(keyCode);
+	}
+	else if(selected != null)
 	{
 		selected.alterText(keyCode)
 	}

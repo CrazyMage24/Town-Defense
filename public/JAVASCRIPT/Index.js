@@ -2,21 +2,16 @@ var myVar;
 
 function loadingScreen()
 {
+	var el = document.getElementById("test");
+	el.style.opacity = 0.5;
 	document.getElementById("loader").style.display = "block";
-	var all = document.getElementsByClassName("loading");
-	for (var i=0, max=all.length; i < max; i++)
-	{
-		clsElements[i].style.display = "none";
-	}
-	myVar = setTimeout(showPage, 100);
+	myVar = setTimeout(showPage, 1000);
 }
 
 function showPage()
 {
-	var all = document.getElementsByClassName("loading");
-	for (var i=0, max=all.length; i < max; i++)
-	{
-		clsElements[i].style.display = "block";
-	}
+	var el = document.getElementById("test");
+	el.style.opacity = 1;
+	el.style.display = "block";
 	document.getElementById("loader").style.display = "none";
 }

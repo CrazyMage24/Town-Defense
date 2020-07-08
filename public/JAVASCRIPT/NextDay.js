@@ -47,5 +47,28 @@ class NextDay extends Widget
 	task()
 	{
 		console.log(this.town);
+		
+		var data = 
+		{
+			name: this.town.name,
+			population: this.town.population,
+			max_population: this.town.max_population,
+			soldiers: this.town.soldiers,
+			max_soldiers: this.town.max_soldiers,
+			farmers: this.town.farmers,
+			max_farmers: this.town.max_farmers,
+			workers: this.town.workers,
+			max_workers: this.town.max_workers,
+			freeman: this.town.freeman,
+			
+			food: this.town.food,
+			max_food: this.town.max_food,
+			resource: this.town.resource,
+			max_resource: this.town.max_resource,
+			happiness: this.town.happiness,
+			max_happiness: this.town.max_happiness,
+			day: this.town.day
+		}
+		socket.emit('newDay', data);
 	}
 }
