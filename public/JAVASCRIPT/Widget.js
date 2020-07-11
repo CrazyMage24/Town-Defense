@@ -42,7 +42,7 @@ class Widget
 		
 	}
 	
-	changeValue(keyCode)
+	changeValue(keyCode,v)
 	{
 		
 	}

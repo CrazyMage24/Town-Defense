@@ -37,18 +37,24 @@ class FillBar extends Widget
 		}
 	}
 	
-	changeValue(keyCode)
+	changeValue(keyCode,v)
 	{
 		if(this.isEditable)
 		{
 			if(keyCode == 39)
 			{
-				this.value++;
+				if(v > 0)
+				{
+					this.value++;
+				}
 				return this.value;
 			}
 			if(keyCode == 37)
 			{
-				this.value--;
+				if(this.value > 0)
+				{
+					this.value--;
+				}
 				return this.value;
 			}
 		}

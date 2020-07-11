@@ -21,43 +21,18 @@ function newConnection(socket)
 	
 	function newGame(inventory,attributes)
 	{	
-		fs.appendFile('users/' + attributes.name + '.txt', JSON.stringify(attributes), function (err) 
-		{
-			if (err) 
-			{
-				// append failed
-				console.log("attributes append failed");
-			} 
-			else 
-			{
-				fs.appendFile('users/' + attributes.name + '.txt', JSON.stringify(inventory), function (err) 
-				{
-					if (err) 
-					{
-						// append failed
-						console.log("inventory append failed");
-					} 
-					else 
-					{
-						// done
-						console.log(attributes.name + " town created and saved");
-					}
-				})
-			}
-		})
-		
-		fs.appendFile('users/' + attributes.name + '.txt', "\n\n", function (err)
-		{
-			if (err)
-			{
-				console.log("err");
-			}
-		})
+		writeData(inventory,attributes);
 	}
 	
 	socket.on("newDay", newDay);
 	
 	function newDay(inventory,attributes)
+	{	
+		battle(inventory,attributes);
+		writeData(inventory,attributes);
+	}
+	
+	function writeData(inventory,attributes)
 	{
 		fs.appendFile('users/' + attributes.name + '.txt', JSON.stringify(attributes), function (err) 
 		{
@@ -91,5 +66,14 @@ function newConnection(socket)
 				console.log("err");
 			}
 		})
+	}
+	
+	function battle(inventory,attributes)
+	{
+		var enemy = attributes.day;
+		inventory[2].key -= enemy;
+		attributes.day++;
+		
+		socket.emit('battle', inventory, attributes);
 	}
 }

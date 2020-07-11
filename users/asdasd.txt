@@ -1,0 +1,3 @@
+
+
+{"name":"asdasd","day":1}[{"name":"Population","key":7},{"name":"Max Population","key":10},{"name":"Soldiers","key":2},{"name":"Max Soldiers","key":10},{"name":"Farmers","key":1},{"name":"Max Farmers","key":10},{"name":"Workers","key":1},{"name":"Max Workers","key":10},{"name":"Builders","key":1},{"name":"Max Builders","key":10},{"name":"Free man","key":2},{"name":"Food","key":50},{"name":"Max Food","key":100},{"name":"Resource","key":40},{"name":"Max Resource","key":100},{"name":"Happiness","key":80},{"name":"Max Happiness","key":100}]

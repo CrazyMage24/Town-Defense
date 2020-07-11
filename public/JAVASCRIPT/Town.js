@@ -54,9 +54,28 @@ class Town
 		this.widgets.push(new NextDay(50,200,150,100,"Next Day",this,this.font1));
 		
 		this.population_list = [];
-		for(i = 0; i < this.population; i++)
+		for(i = 0; i < this.inventory[0].key; i++)
 		{
-			var person = new Person("Person" + (i+1), "farmer",80);
+			if(i < 2)
+			{
+				var person = new Person("Person" + (i+1), "Soldier",80);
+			}
+			else if(i < 3)
+			{
+				var person = new Person("Person" + (i+1), "Farmer",80);
+			}
+			else if(i < 4)
+			{
+				var person = new Person("Person" + (i+1), "Worker",80);
+			}
+			else if(i < 5)
+			{
+				var person = new Person("Person" + (i+1), "Builder",80);
+			}
+			else
+			{
+				var person = new Person("Person" + (i+1), "Free man",80);
+			}
 			this.population_list.push(person);
 		}
 		this.widgets.push(new List(50,350,300,400,"",this.population_list,this.font1));
@@ -67,6 +86,44 @@ class Town
 		for(i = 0; i < this.widgets.length; i++)
 		{
 			this.widgets[i].show();
+		}
+		
+		socket.on('battle', function(inventory,attributes) 
+		{
+			console.log(attributes,inventory);
+		});
+	}
+	
+	checkOccupation()
+	{
+		var index = 0;
+		for(var i = 0; i < this.inventory[2].key; i++)
+		{
+			index = i;
+			this.population_list[index].occupation = "Soldier";
+		}
+		
+		for(var i = index; i < this.inventory[4].key + index; i++)
+		{
+			index = i;
+			this.population_list[index].occupation = "Farmer";
+		}
+		
+		for(var i = index; i < this.inventory[6].key + index; i++)
+		{
+			index = i;
+			this.population_list[index].occupation = "Worker";
+		}
+		
+		for(var i = index; i < this.inventory[8].key + index; i++)
+		{
+			index = i;
+			this.population_list[index].occupation = "Builder";
+		}
+		
+		for(var i = index; i < this.population_list.length; i++)
+		{
+			this.population_list[i].occupation = "Free man";
 		}
 	}
 	
@@ -121,27 +178,31 @@ class Town
 		{
 			if(this.selected.szo == "Soldiers")
 			{
-				this.inventory[2].key = this.selected.changeValue(keyCode);
+				this.inventory[2].key = this.selected.changeValue(keyCode,this.widgets[6].value);
 				this.inventory[10].key = this.inventory[0].key - this.inventory[2].key - this.inventory[4].key - this.inventory[6].key - this.inventory[8].key;
-				this.widgets.push(new FillBar(1300,50,200,20,"Free man",this.inventory[10].key,this.inventory[1].key,false,this.font1));
+				this.widgets[6].value = this.inventory[10].key;
+				this.checkOccupation();
 			}
 			else if(this.selected.szo == "Farmers")
 			{
-				this.inventory[4].key = this.selected.changeValue(keyCode);
+				this.inventory[4].key = this.selected.changeValue(keyCode,this.widgets[6].value);
 				this.inventory[10].key = this.inventory[0].key - this.inventory[2].key - this.inventory[4].key - this.inventory[6].key - this.inventory[8].key;
-				this.widgets.push(new FillBar(1300,50,200,20,"Free man",this.inventory[10].key,this.inventory[1].key,false,this.font1));
+				this.widgets[6].value = this.inventory[10].key;
+				this.checkOccupation();
 			}
 			else if(this.selected.szo == "Workers")
 			{
-				this.inventory[6].key = this.selected.changeValue(keyCode);
+				this.inventory[6].key = this.selected.changeValue(keyCode,this.widgets[6].value);
 				this.inventory[10].key = this.inventory[0].key - this.inventory[2].key - this.inventory[4].key - this.inventory[6].key - this.inventory[8].key;
-				this.widgets.push(new FillBar(1300,50,200,20,"Free man",this.inventory[10].key,this.inventory[1].key,false,this.font1));
+				this.widgets[6].value = this.inventory[10].key;
+				this.checkOccupation();
 			}
 			else if(this.selected.szo == "Builders")
 			{
-				this.inventory[8].key = this.selected.changeValue(keyCode);
+				this.inventory[8].key = this.selected.changeValue(keyCode,this.widgets[6].value);
 				this.inventory[10].key = this.inventory[0].key - this.inventory[2].key - this.inventory[4].key - this.inventory[6].key - this.inventory[8].key;
-				this.widgets.push(new FillBar(1300,50,200,20,"Free man",this.inventory[10].key,this.inventory[1].key,false,this.font1));
+				this.widgets[6].value = this.inventory[10].key;
+				this.checkOccupation();
 			}
 		}
 	}
