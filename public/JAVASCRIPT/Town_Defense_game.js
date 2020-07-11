@@ -5,6 +5,8 @@ var selected;
 var highlight;
 var game;
 var falu;
+var font1;
+var font2;
 
 var socket;
 
@@ -21,6 +23,8 @@ function setup()
   highlight = null;
   game = null;
   falu = null;
+  font1 = loadFont("FONTS/FFF_Tusj.ttf");
+  font2 = loadFont("FONTS/sign_font.otf");
   
   fomenu();
   
@@ -112,19 +116,19 @@ function hatter()
 function fomenu()
 {
 	widgets = [];
-	widgets.push(new StaticText(700,50,200,50,"Town Defense",50));
-	widgets.push(new Button(675,150,250,100,"1 jatekos"));
+	widgets.push(new StaticText(700,50,200,50,"Town Defense",50,font1));
+	widgets.push(new Button(675,150,250,100,"1 jatekos",font1));
 	loadingScreen();
 }
 
 function town_name_selector()
 {
 	widgets = [];
-	widgets.push(new Button(675,550,250,100,"Vissza"));
-	widgets.push(new StaticText(650,100,50,50,"Város neve:",40));
-	falu = new WritingText(850,100,250,50);
+	widgets.push(new Button(675,550,250,100,"Vissza",font1));
+	widgets.push(new StaticText(650,100,50,50,"Város neve:",40,font1));
+	falu = new WritingText(850,100,250,50,"semmi",font1);
 	widgets.push(falu);
-	widgets.push(new Button(650,300,300,100,"Jatek inditasa"));
+	widgets.push(new Button(650,300,300,100,"Jatek inditasa",font1));
 	loadingScreen();
 }
 
@@ -133,32 +137,10 @@ function town_defense_game()
 	if(falu.szo.length > 0)
 	{
 		widgets = [];
-		game = new Town(falu.szo);
-		
-		var data = 
-		{
-			name: game.name,
-			population: game.population,
-			max_population: game.max_population,
-			soldiers: game.soldiers,
-			max_soldiers: game.max_soldiers,
-			farmers: game.farmers,
-			max_farmers: game.max_farmers,
-			workers: game.workers,
-			max_workers: game.max_workers,
-			freeman: game.freeman,
-			
-			food: game.food,
-			max_food: game.max_food,
-			resource: game.resource,
-			max_resource: game.max_resource,
-			happiness: game.happiness,
-			max_happiness: game.max_happiness,
-			day: game.day
-		}
+		game = new Town(falu.szo,font1,font2);
 		
 		// server shit
-		socket.emit('newGame', data);
+		socket.emit('newGame', game.inventory,game.attributes);
 	}
 	loadingScreen();
 }

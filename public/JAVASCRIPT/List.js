@@ -1,10 +1,9 @@
 class List extends Widget 
 {
-	constructor(x,y,w,h,szo,lista)
+	constructor(x,y,w,h,szo,lista,font)
 	{
-		super(x,y,w,h,szo);
+		super(x,y,w,h,szo,font);
 		this.lista=lista;
-		this.font = loadFont("FONTS/FFF_Tusj.ttf");
 	}
 	
 	show()

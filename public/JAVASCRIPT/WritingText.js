@@ -1,10 +1,9 @@
 class WritingText extends Widget 
 {
-	constructor(x,y,w,h,szo)
+	constructor(x,y,w,h,szo,font)
 	{
-		super(x,y,w,h,szo);
+		super(x,y,w,h,szo,font);
 		this.szo = "";
-		this.font = loadFont("FONTS/FFF_Tusj.ttf");
 	}
 	
 	show()

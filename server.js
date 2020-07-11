@@ -7,7 +7,7 @@ var server = app.listen(3000);
 
 app.use(express.static("public"));
 
-console.log("Running at 127.0.0.1:3000 !");
+console.log("Running at 127.0.0.1:3000!");
 
 var io = socket(server);
 
@@ -19,48 +19,77 @@ function newConnection(socket)
 	
 	socket.on("newGame",newGame);
 	
-	function newGame(data)
-	{
-		let savedata = 
+	function newGame(inventory,attributes)
+	{	
+		fs.appendFile('users/' + attributes.name + '.txt', JSON.stringify(attributes), function (err) 
 		{
-			name: data.name,
-			population: data.population,
-			max_population: data.max_population,
-			soldiers: data.soldiers,
-			max_soldiers: data.max_soldiers,
-			farmers: data.farmers,
-			max_farmers: data.max_farmers,
-			workers: data.workers,
-			max_workers: data.max_workers,
-			freeman: data.freeman,
-			
-			food: data.food,
-			max_food: data.max_food,
-			resource: data.resource,
-			max_resource: data.max_resource,
-			happiness: data.happiness,
-			max_happiness: data.max_happiness,
-			day: data.day
-		}
+			if (err) 
+			{
+				// append failed
+				console.log("attributes append failed");
+			} 
+			else 
+			{
+				fs.appendFile('users/' + attributes.name + '.txt', JSON.stringify(inventory), function (err) 
+				{
+					if (err) 
+					{
+						// append failed
+						console.log("inventory append failed");
+					} 
+					else 
+					{
+						// done
+						console.log(attributes.name + " town created and saved");
+					}
+				})
+			}
+		})
 		
-		var file = "users/" + savedata.name + ".txt";
-		fs.writeFile(file, JSON.stringify(savedata), (err) => 
+		fs.appendFile('users/' + attributes.name + '.txt', "\n\n", function (err)
 		{
-			if (err) throw err;
-			console.log(savedata.name + " town started and saved");
-		});
-		
+			if (err)
+			{
+				console.log("err");
+			}
+		})
 	}
 	
 	socket.on("newDay", newDay);
 	
-	function newDay(data)
+	function newDay(inventory,attributes)
 	{
-		var file = "users/" + data.name + ".txt";
-		fs.writeFile(file, JSON.stringify(data), (err) => 
+		fs.appendFile('users/' + attributes.name + '.txt', JSON.stringify(attributes), function (err) 
 		{
-			if (err) throw err;
-			console.log(data.name + " town saved at Day " + data.day);
-		});
+			if (err) 
+			{
+				// append failed
+				console.log("attributes append failed");
+			} 
+			else 
+			{
+				fs.appendFile('users/' + attributes.name + '.txt', JSON.stringify(inventory), function (err) 
+				{
+					if (err) 
+					{
+						// append failed
+						console.log("inventory append failed");
+					} 
+					else 
+					{
+						// done
+						console.log(attributes.name + " town saved at Day " + attributes.day);
+					}
+				})
+			}
+		})
+		
+		fs.appendFile('users/' + attributes.name + '.txt', "\n\n", function (err)
+		{
+			if (err)
+			{
+				console.log("err");
+			}
+		})
 	}
 }

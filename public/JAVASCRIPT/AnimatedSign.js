@@ -1,11 +1,10 @@
 class AnimatedSign extends Widget 
 {
-	constructor(x,y,w,h,szo,bm,source)
+	constructor(x,y,w,h,szo,bm,source,font)
 	{
-		super(x,y,w,h,szo);
+		super(x,y,w,h,szo,font);
 		this.bm=bm;
 		this.szo = this.szo.toUpperCase();
-		this.font = loadFont("FONTS/sign_font.otf");
 		this.img = loadImage(source);
 	}
 	

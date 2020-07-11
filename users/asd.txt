@@ -1,1 +1,0 @@
-{"name":"asd","population":5,"max_population":10,"soldiers":0,"max_soldiers":10,"farmers":5,"max_farmers":10,"workers":0,"max_workers":10,"freeman":0,"food":50,"max_food":100,"resource":40,"max_resource":100,"happiness":80,"max_happiness":100,"day":1}

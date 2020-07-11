@@ -1,9 +1,8 @@
 class Button extends Widget 
 {
-	constructor(x,y,w,h,szo)
+	constructor(x,y,w,h,szo,font)
 	{
-		super(x,y,w,h,szo);
-		this.font = loadFont("FONTS/FFF_Tusj.ttf");
+		super(x,y,w,h,szo,font);
 	}
 	
 	show()

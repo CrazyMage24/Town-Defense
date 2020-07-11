@@ -1,10 +1,9 @@
 class StaticText extends Widget 
 {
-	constructor(x,y,w,h,szo,bm)
+	constructor(x,y,w,h,szo,bm,font)
 	{
-		super(x,y,w,h,szo);
+		super(x,y,w,h,szo,font);
 		this.bm=bm;
-		this.font = loadFont("FONTS/FFF_Tusj.ttf");
 	}
 	
 	show()

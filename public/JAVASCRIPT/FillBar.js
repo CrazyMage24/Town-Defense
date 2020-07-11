@@ -1,14 +1,12 @@
 class FillBar extends Widget 
 {
-	constructor(x,y,w,h,szo,value,maxValue, isEditable)
+	constructor(x,y,w,h,szo,value,maxValue, isEditable, font)
 	{
-		super(x,y,w,h,szo);
+		super(x,y,w,h,szo,font);
 		this.value = value;
 		this.maxValue = maxValue;
 		this.isEditable = isEditable;
-		this.szo = szo;
-		this.font = loadFont("FONTS/FFF_Tusj.ttf");
-		
+		this.szo = szo;	
 	}
 	
 	show()
@@ -39,15 +37,20 @@ class FillBar extends Widget
 		}
 	}
 	
-	alterText(keyCode)
+	changeValue(keyCode)
 	{
-		if(keyCode == 39)
+		if(this.isEditable)
 		{
-			this.value++;
-		}
-		if(keyCode == 37)
-		{
-			this.value--;
+			if(keyCode == 39)
+			{
+				this.value++;
+				return this.value;
+			}
+			if(keyCode == 37)
+			{
+				this.value--;
+				return this.value;
+			}
 		}
 	}
 }
