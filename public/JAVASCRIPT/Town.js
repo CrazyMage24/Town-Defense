@@ -4,6 +4,7 @@ class Town
 	{
 		this.selected = null;
 		this.highlight = null;
+		this.battle = null;
 		this.font1 = font1;
 		this.font2 = font2;
 		this.name = name;
@@ -83,15 +84,18 @@ class Town
 	
 	run()
 	{
-		for(i = 0; i < this.widgets.length; i++)
+		if(this.battle != null)
 		{
-			this.widgets[i].show();
+			this.battle.run();
+		}
+		else
+		{
+			for(i = 0; i < this.widgets.length; i++)
+			{
+				this.widgets[i].show();
+			}
 		}
 		
-		socket.on('battle', function(inventory,attributes) 
-		{
-			console.log(attributes,inventory);
-		});
 	}
 	
 	checkOccupation()

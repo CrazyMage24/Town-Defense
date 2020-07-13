@@ -39,6 +39,11 @@ function draw()
 	if(game != null)
 	{
 		game.run();
+		socket.on('battle', function(inventory,attributes) 
+		{
+			game.battle = new BattleScreen(inventory,attributes);
+			console.log(game.battle);
+		});
 	}
 	else
 	{
