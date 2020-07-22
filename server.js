@@ -19,61 +19,36 @@ function newConnection(socket)
 	
 	socket.on("newGame",newGame);
 	
-	function newGame(inventory,attributes)
+	function newGame(inventory)
 	{	
-		writeData(inventory,attributes);
+		writeData(inventory);
 	}
 	
 	socket.on("newDay", newDay);
 	
-	function newDay(inventory,attributes)
+	function newDay(inventory)
 	{	
-		battle(inventory,attributes);
-		writeData(inventory,attributes);
+		battle(inventory);
+		writeData(inventory);
 	}
 	
-	function writeData(inventory,attributes)
+	function writeData(inventory)
 	{
-		fs.appendFile('users/' + attributes.name + '.txt', JSON.stringify(attributes), function (err) 
-		{
-			if (err) 
-			{
-				// append failed
-				console.log("attributes append failed");
-			} 
-			else 
-			{
-				fs.appendFile('users/' + attributes.name + '.txt', JSON.stringify(inventory), function (err) 
-				{
-					if (err) 
-					{
-						// append failed
-						console.log("inventory append failed");
-					} 
-					else 
-					{
-						// done
-						console.log(attributes.name + " town saved at Day " + attributes.day);
-					}
-				})
-			}
-		})
-		
-		fs.appendFile('users/' + attributes.name + '.txt', "\n\n", function (err)
-		{
-			if (err)
-			{
-				console.log("err");
-			}
-		})
+		fs.writeFileSync('users/'+inventory[0].key+'.json',JSON.stringify(inventory, null, 2),'utf-8');
+		console.log(inventory[0].key + " town saved at Day " + inventory[1].key);
 	}
 	
-	function battle(inventory,attributes)
+	function battle(inventory)
 	{
-		var enemy = attributes.day;
-		inventory[2].key -= enemy;
-		attributes.day++;
+		//const oldinventory = inventory;
+		var enemy = inventory[1].key;
 		
-		socket.emit('battle', inventory, attributes);
+		inventory[4].key -= enemy;
+		inventory[1].key++;
+		socket.emit('battle',inventory);
 	}
+	
+	socket.on('disconnect', function() {
+      console.log("Disconnected: " + socket.id);
+   });
 }

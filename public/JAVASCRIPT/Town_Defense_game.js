@@ -5,8 +5,7 @@ var selected;
 var highlight;
 var game;
 var falu;
-var font1;
-var font2;
+var fonts = [];
 
 var socket;
 
@@ -23,8 +22,8 @@ function setup()
   highlight = null;
   game = null;
   falu = null;
-  font1 = loadFont("FONTS/FFF_Tusj.ttf");
-  font2 = loadFont("FONTS/sign_font.otf");
+  fonts.push(loadFont("FONTS/FFF_Tusj.ttf"));
+  fonts.push(loadFont("FONTS/sign_font.otf"));
   
   fomenu();
   
@@ -39,10 +38,9 @@ function draw()
 	if(game != null)
 	{
 		game.run();
-		socket.on('battle', function(inventory,attributes) 
+		socket.on('battle', function(inventory) 
 		{
-			game.battle = new BattleScreen(inventory,attributes);
-			console.log(game.battle);
+			game.battle = new BattleScreen(inventory,game,fonts);
 		});
 	}
 	else
@@ -121,19 +119,19 @@ function hatter()
 function fomenu()
 {
 	widgets = [];
-	widgets.push(new StaticText(700,50,200,50,"Town Defense",50,font1));
-	widgets.push(new Button(675,150,250,100,"1 jatekos",font1));
+	widgets.push(new StaticText(700,50,200,50,"Town Defense",50,this.fonts[0]));
+	widgets.push(new Button(675,150,250,100,"1 jatekos",this.fonts[0]));
 	loadingScreen();
 }
 
 function town_name_selector()
 {
 	widgets = [];
-	widgets.push(new Button(675,550,250,100,"Vissza",font1));
-	widgets.push(new StaticText(650,100,50,50,"Város neve:",40,font1));
-	falu = new WritingText(850,100,250,50,"semmi",font1);
+	widgets.push(new Button(675,550,250,100,"Vissza",this.fonts[0]));
+	widgets.push(new StaticText(650,100,50,50,"Város neve:",40,this.fonts[0]));
+	falu = new WritingText(850,100,250,50,"semmi",this.fonts[0]);
 	widgets.push(falu);
-	widgets.push(new Button(650,300,300,100,"Jatek inditasa",font1));
+	widgets.push(new Button(650,300,300,100,"Jatek inditasa",this.fonts[0]));
 	loadingScreen();
 }
 
@@ -142,10 +140,10 @@ function town_defense_game()
 	if(falu.szo.length > 0)
 	{
 		widgets = [];
-		game = new Town(falu.szo,font1,font2);
+		game = new Town(falu.szo,fonts);
 		
 		// server shit
-		socket.emit('newGame', game.inventory,game.attributes);
+		socket.emit('newGame', game.inventory);
 	}
 	loadingScreen();
 }

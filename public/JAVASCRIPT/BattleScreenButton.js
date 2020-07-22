@@ -1,9 +1,10 @@
-class NextDay extends Widget 
+class BattleScreenButton extends Widget 
 {
-	constructor(x,y,w,h,szo,town,font)
+	constructor(x,y,w,h,szo,town,inventory,font)
 	{
 		super(x,y,w,h,szo,font);
 		this.town = town;
+		this.inventory = inventory;
 	}
 	
 	show()
@@ -45,6 +46,6 @@ class NextDay extends Widget
 	
 	task()
 	{
-		socket.emit('newDay', this.town.inventory);
+		this.town.newDay(this.inventory);
 	}
 }

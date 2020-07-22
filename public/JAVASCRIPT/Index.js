@@ -5,7 +5,7 @@ function loadingScreen()
 	var el = document.getElementById("test");
 	el.style.opacity = 0.5;
 	document.getElementById("loader").style.display = "block";
-	myVar = setTimeout(showPage, 1000);
+	myVar = setTimeout(showPage, 500);
 }
 
 function showPage()
