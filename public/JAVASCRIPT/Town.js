@@ -5,6 +5,7 @@ class Town
 		this.selected = null;
 		this.highlight = null;
 		this.battle = null;
+		this.drawTown = null;
 		
 		this.fonts = fonts;
 		this.inventory = 
@@ -56,6 +57,8 @@ class Town
 			}
 			this.population_list.push(person);
 		}
+		this.buildings = [];
+		this.buildings.push(new Building(750,350,50,50,"House"));
 		this.defaultWidgets();
 	}
 	
@@ -70,6 +73,7 @@ class Town
 			for(i = 0; i < this.widgets.length; i++)
 			{
 				this.widgets[i].show();
+				this.drawTown.show();
 			}
 		}
 		
@@ -119,7 +123,6 @@ class Town
 	defaultWidgets()
 	{	
 		this.widgets = [];
-		this.buildings = [];
 		
 		/* [0] */ this.widgets.push(new FillBar(50,50,200,20,"Population",this.inventory[2].key,this.inventory[3].key,false,this.fonts[0]));
 		/* [1] */ this.widgets.push(new FillBar(300,50,200,20,"Soldiers",this.inventory[4].key,this.inventory[5].key,true,this.fonts[0]));
@@ -134,6 +137,8 @@ class Town
 		
 		/* [9] */ this.widgets.push(new NextDay(50,200,150,100,"Next Day",this,this.fonts[0]));
 		/* [10] */ this.widgets.push(new List(50,350,300,400,"",this.population_list,this.fonts[0]));
+		
+		this.drawTown = new DrawTown(600,250,500,500,this.population_list,this.buildings);
 	}
 	
 	newDay(inventory)
@@ -142,6 +147,7 @@ class Town
 		this.selected = null;
 		this.highlight = null;
 		this.battle = null;
+		this.drawTown = null;
 		
 		this.inventory = inventory;
 		this.setPeople();
@@ -277,5 +283,6 @@ class Town
 			this.population_list.push(person);
 		}
 		this.widgets[10] = new List(50,350,300,400,"",this.population_list,this.fonts[0]);
+		this.drawTown = new DrawTown(600,250,500,500,this.population_list,this.buildings);
 	}
 }

@@ -53,16 +53,22 @@ function newConnection(socket)
 		var resource = inventory[15].key;
 		var happiness = inventory[17].key;
 		
-		// katonák halála 50%-50%
-		for(var i = 0; i < enemy; i++)
+		
+		while(enemy > 0)
 		{
-			if(Math.floor(Math.random() * 101) % 2 == 0)
+			if(soldiers > 0)
 			{
-				if(soldiers > 0)
+				if(Math.floor(Math.random() * 101) % 4 == 0)
 				{
 					soldiers--;
+					population--;
+					happiness+=-5;
 				}
-				else if(farmers > 0)
+				enemy--;
+			}
+			else
+			{
+				if(farmers > 0)
 				{
 					farmers--;
 				}
@@ -78,23 +84,14 @@ function newConnection(socket)
 				{
 					freeman--;
 				}
-				else
-				{
-					// vesztett a tag!
-				}
+				enemy--;
 				population--;
-				happiness-=population;
 			}
 		}
 		
-		// random populáció növekedés
-		
-		if(Math.floor(Math.random() * 101) % 4 == 0)
+		if(population < 1)
 		{
-			var mennyi = Math.floor(Math.random() * 4);
-			population+=mennyi;
-			freeman+=mennyi;
-			happiness+=mennyi;
+			socket.emit('lose');
 		}
 		
 		// kaja
@@ -123,6 +120,18 @@ function newConnection(socket)
 		// nyersanyag
 		
 		resource+=workers;
+		
+		// random populáció növekedés
+		
+		if(Math.floor(Math.random() * 101) % 4 == 0)
+		{
+			var mennyi = Math.floor(Math.random() * 4);
+			population+=mennyi;
+			freeman+=mennyi;
+			happiness+=mennyi;
+		}
+		
+		// visszaküldés
 		
 		inventory[1].key++;
 		inventory[2].key = population;

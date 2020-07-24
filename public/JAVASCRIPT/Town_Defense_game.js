@@ -42,6 +42,11 @@ function draw()
 		{
 			game.battle = new BattleScreen(inventory,game,fonts);
 		});
+		
+		socket.on('lose', function()
+		{
+			console.log("Lose");
+		});
 	}
 	else
 	{
