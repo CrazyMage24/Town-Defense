@@ -40,7 +40,6 @@ function newConnection(socket)
 	
 	function battle(inventory)
 	{
-		//const oldinventory = inventory; !!! newinventory talán???
 		var enemy = inventory[1].key;
 		var population = inventory[2].key;
 		var soldiers = inventory[4].key;
@@ -52,6 +51,7 @@ function newConnection(socket)
 		var food = inventory[13].key;
 		var resource = inventory[15].key;
 		var happiness = inventory[17].key;
+		
 		
 		
 		while(enemy > 0)
@@ -100,6 +100,8 @@ function newConnection(socket)
 		
 		food -= population;
 		
+		//csata nyerés plusz boldogság
+		
 		if(food < 0)
 		{
 			happiness-=50;
@@ -133,18 +135,30 @@ function newConnection(socket)
 		
 		// visszaküldés
 		
-		inventory[1].key++;
-		inventory[2].key = population;
-		inventory[4].key = soldiers;
-		inventory[6].key = farmers;
-		inventory[8].key = workers;
-		inventory[10].key = builders;
-		inventory[12].key = freeman;
-		
-		inventory[13].key = food;
-		inventory[15].key = resource;
-		inventory[17].key = happiness;
-		socket.emit('battle',inventory);
+		var newinventory = 
+		[
+			{name: "Name", key: inventory[0].key}, 				//[0]
+			{name: "Day", key: inventory[1].key + 1}, 			//[1]
+			{name: "Population", key: population}, 				//[2]
+			{name: "Max Population", key: inventory[3].key},	//[3]
+			{name: "Soldiers", key: soldiers},					//[4]
+			{name: "Max Soldiers", key: inventory[5].key},		//[5]
+			{name: "Farmers", key: farmers},					//[6]
+			{name: "Max Farmers", key: inventory[7].key},		//[7]
+			{name: "Workers", key: workers},					//[8]
+			{name: "Max Workers", key: inventory[9].key},		//[9]
+			{name: "Builders", key: builders},					//[10]
+			{name: "Max Builders", key: inventory[11].key},		//[11]
+			{name: "Free man", key: freeman},					//[12]
+			
+			{name: "Food", key: food},							//[13]
+			{name: "Max Food", key: inventory[14].key},			//[14]
+			{name: "Resource", key: resource},					//[15]
+			{name: "Max Resource", key: inventory[16].key},		//[16]
+			{name: "Happiness", key: happiness},				//[17]
+			{name: "Max Happiness", key: inventory[18].key},	//[18]
+		];
+		socket.emit('battle',inventory, newinventory);
 	}
 	
 	socket.on('disconnect', function() {

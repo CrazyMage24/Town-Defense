@@ -38,9 +38,9 @@ function draw()
 	if(game != null)
 	{
 		game.run();
-		socket.on('battle', function(inventory) 
+		socket.on('battle', function(inventory,newinventory) 
 		{
-			game.battle = new BattleScreen(inventory,game,fonts);
+			game.battle = new BattleScreen(inventory,newinventory,game,fonts);
 		});
 		
 		socket.on('lose', function()

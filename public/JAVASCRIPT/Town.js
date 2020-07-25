@@ -12,7 +12,7 @@ class Town
 		[
 			{name: "Name", key: name}, 			//[0]
 			{name: "Day", key: 1}, 				//[1]
-			{name: "Population", key: 7}, 		//[2]
+			{name: "Population", key: 15}, 		//[2]
 			{name: "Max Population", key: 10},	//[3]
 			{name: "Soldiers", key: 2},			//[4]
 			{name: "Max Soldiers", key: 10},	//[5]
@@ -22,7 +22,7 @@ class Town
 			{name: "Max Workers", key: 10},		//[9]
 			{name: "Builders", key: 1},			//[10]
 			{name: "Max Builders", key: 10},	//[11]
-			{name: "Free man", key: 2},			//[12]
+			{name: "Free man", key: 10},		//[12]
 			
 			{name: "Food", key: 12},			//[13]
 			{name: "Max Food", key: 50},		//[14]
@@ -58,7 +58,12 @@ class Town
 			this.population_list.push(person);
 		}
 		this.buildings = [];
-		this.buildings.push(new Building(750,350,50,50,"House"));
+		this.buildings.push(new Building(this,750,350,50,50,"House"));
+		
+		for(var i = 0; i < this.buildings.length; i++)
+		{
+			this.buildings[i].value();
+		}
 		this.defaultWidgets();
 	}
 	

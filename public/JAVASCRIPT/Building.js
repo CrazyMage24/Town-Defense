@@ -1,7 +1,8 @@
 class Building
 {
-	constructor(x,y,w,h,name)
+	constructor(town,x,y,w,h,name)
 	{
+		this.town = town;
 		this.x = x;
 		this.y = y;
 		this.w = w;
@@ -25,6 +26,14 @@ class Building
 			line(this.x+this.w,this.y-4,this.x+this.w-this.w/2,this.y-this.h/2);
 			strokeWeight(1);
 			noStroke();	
+		}
+	}
+	
+	value()
+	{
+		if(this.name=="House")
+		{
+			this.town.inventory[3].key+=10;
 		}
 	}
 }
