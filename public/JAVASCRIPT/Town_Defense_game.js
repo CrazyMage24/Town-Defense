@@ -126,6 +126,13 @@ function fomenu()
 	widgets = [];
 	widgets.push(new StaticText(700,50,200,50,"Town Defense",50,this.fonts[0]));
 	widgets.push(new Button(675,150,250,100,"1 jatekos",this.fonts[0]));
+	widgets.push(new Button(675,350,250,100,"Betoltes",this.fonts[0]));
+	loadingScreen();
+}
+
+function betoltes()
+{
+	widgets = [];
 	loadingScreen();
 }
 

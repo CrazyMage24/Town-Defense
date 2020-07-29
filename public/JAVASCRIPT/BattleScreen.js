@@ -23,7 +23,7 @@ class BattleScreen
 		this.widgets.push(new StaticText(350,400,200,50,"Volt boldogság: " + this.inventory[17].key,35,this.fonts[0]));
 		this.widgets.push(new StaticText(1050,400,200,50,"Megmaradt boldogság: " + this.newinventory[17].key,35,this.fonts[0]));
 		
-		this.widgets.push(new BattleScreenButton(700,600,400,100,"Kovetkezo nap",this.town,this.inventory,this.fonts[0]));
+		this.widgets.push(new BattleScreenButton(700,600,400,100,"Kovetkezo nap",this.town,this.newinventory,this.fonts[0]));
 	}
 	
 	run()

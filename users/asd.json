@@ -1,0 +1,78 @@
+[
+  {
+    "name": "Name",
+    "key": "asd"
+  },
+  {
+    "name": "Day",
+    "key": 5
+  },
+  {
+    "name": "Population",
+    "key": 6
+  },
+  {
+    "name": "Max Population",
+    "key": 20
+  },
+  {
+    "name": "Soldiers",
+    "key": 0
+  },
+  {
+    "name": "Max Soldiers",
+    "key": 10
+  },
+  {
+    "name": "Farmers",
+    "key": 3
+  },
+  {
+    "name": "Max Farmers",
+    "key": 10
+  },
+  {
+    "name": "Workers",
+    "key": 2
+  },
+  {
+    "name": "Max Workers",
+    "key": 10
+  },
+  {
+    "name": "Builders",
+    "key": 1
+  },
+  {
+    "name": "Max Builders",
+    "key": 10
+  },
+  {
+    "name": "Free man",
+    "key": 0
+  },
+  {
+    "name": "Food",
+    "key": 28
+  },
+  {
+    "name": "Max Food",
+    "key": 50
+  },
+  {
+    "name": "Resource",
+    "key": 28
+  },
+  {
+    "name": "Max Resource",
+    "key": 50
+  },
+  {
+    "name": "Happiness",
+    "key": 86
+  },
+  {
+    "name": "Max Happiness",
+    "key": 100
+  }
+]

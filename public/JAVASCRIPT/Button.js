@@ -52,6 +52,8 @@ class Button extends Widget
 				break;
 			case "Jatek inditasa": town_defense_game();
 				break;
+			case "Betoltes": betoltes();
+				break;
 			
 			default: console.log(this.szo);
 		}
